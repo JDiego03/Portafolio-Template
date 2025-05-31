@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Profile from "./components/Profile";
+import Header from "./components/header";
+import Footer from "./components/Footer";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-
     const shouldUseDark = savedTheme === "dark" || savedTheme === null;
     if (shouldUseDark) {
       document.documentElement.classList.add("dark");
@@ -25,14 +27,16 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <div className="min-h-screen flex flex-col bg-white text-black dark:bg-gray-900 dark:text-white transition-colors duration-300">
       <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={<Home toggleTheme={toggleTheme} darkMode={darkMode} />}
-          />
-        </Routes>
+        <Header toggleTheme={toggleTheme} darkMode={darkMode} />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Profile" element={<Profile />} />
+          </Routes>
+        </main>
+        <Footer />
       </BrowserRouter>
     </div>
   );
