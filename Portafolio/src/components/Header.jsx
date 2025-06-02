@@ -1,6 +1,13 @@
 import { CiLight } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
 
+const scrollToSection = (id) => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 function Header({ toggleTheme, darkMode }) {
   return (
     <header className="fixed top-0 w-full z-50 border-b-4 border-gray-200 dark:border-blue-600 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md transition-colors">
@@ -8,35 +15,35 @@ function Header({ toggleTheme, darkMode }) {
         <nav aria-label="Main navigation">
           <ul className="flex gap-6 text-base font-medium text-gray-900 dark:text-white">
             <li>
-              <a
-                href="#inicio"
+              <button
+                onClick={() => scrollToSection("inicio")}
                 className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded transition"
               >
-                inicio
-              </a>
+                Inicio
+              </button>
             </li>
             <li>
-              <a
-                href="#sobre-mi"
+              <button
+                onClick={() => scrollToSection("sobre-mi")}
                 className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded transition"
               >
                 Sobre mí
-              </a>
+              </button>
             </li>
             <li>
-              <a
-                href="#proyectos"
+              <button
+                onClick={() => scrollToSection("proyectos")}
                 className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded transition"
               >
                 Proyectos
-              </a>
+              </button>
             </li>
           </ul>
         </nav>
 
         <div className="flex items-center gap-4">
           <a
-            href="/JuanDiegoCV.pdf"
+            href={`${import.meta.env.BASE_URL}JuanDiegoCV.pdf`}
             download
             className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition shadow-md"
           >
