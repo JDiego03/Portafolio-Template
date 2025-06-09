@@ -15,14 +15,13 @@ function Header({ toggleTheme, darkMode }) {
 
   const handleNavClick = (id) => {
     scrollToSection(id);
-    setMenuOpen(false); // Cierra el menú móvil
+    setMenuOpen(false);
   };
 
   return (
     <header className="fixed top-0 w-full z-50 border-b-4 border-gray-200 dark:border-blue-600 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md transition-colors">
       <div className="max-w-6xl mx-auto flex justify-between items-center px-4 py-4">
         <div className="flex items-center justify-between w-full md:w-auto">
-          {/* Botón menú hamburguesa en móvil */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden text-3xl text-gray-900 dark:text-white focus:outline-none"
@@ -32,7 +31,6 @@ function Header({ toggleTheme, darkMode }) {
           </button>
         </div>
 
-        {/* Menú de navegación */}
         <nav
           className={`${
             menuOpen ? "block" : "hidden"
@@ -67,7 +65,6 @@ function Header({ toggleTheme, darkMode }) {
           </ul>
         </nav>
 
-        {/* Sección derecha */}
         <div className="hidden md:flex items-center gap-4">
           <a
             href={`${import.meta.env.BASE_URL}JuanDiegoCV.pdf`}
@@ -87,7 +84,6 @@ function Header({ toggleTheme, darkMode }) {
         </div>
       </div>
 
-      {/* Opciones solo visibles en móvil, debajo del nav */}
       {menuOpen && (
         <div className="md:hidden px-4 pb-4 flex flex-col gap-4">
           <a
