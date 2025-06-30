@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Inicio from "../components/Inicio";
 import Proyectos from "../components/Proyectos";
-import SobreMi from "../components/SobreMi";
 import Header from "../components/Header";
+import Experiencia from "../components/Experiencia";
+import RainEffect from "../components/RainEffect";
+import Habilidades from "../components/Habilidades";
 
 function Profile() {
   const [darkMode, setDarkMode] = useState(false);
@@ -30,30 +32,47 @@ function Profile() {
       <Header toggleTheme={toggleTheme} darkMode={darkMode} />
 
       <main className="pt-24 flex-1 flex flex-col items-center justify-center">
-        {/* INICIO */}
+        {/* Inicio Section */}
         <section
           id="inicio"
-          className="w-full border-b-4 border-gray-300 dark:border-blue-600"
+          className="w-full border-b-4 border-gray-300 dark:border-blue-600 relative overflow-hidden"
         >
-          <article className="max-w-4xl mx-auto px-6 py-20 sm:py-28 min-h-[80vh] flex items-center justify-center">
+          <RainEffect />
+          <article className="max-w-4xl mx-auto px-6 py-20 sm:py-28 min-h-[80vh] flex items-center justify-center relative z-10">
             <Inicio />
           </article>
         </section>
 
-        {/* SOBRE MÍ */}
+        {/* Proyectos Section */}
         <section
-          id="sobre-mi"
-          className="w-full border-b-4 border-gray-300 dark:border-blue-600"
+          id="proyectos"
+          className="w-full border-t border-gray-300 dark:border-blue-500/30"
+          // borde top fino y translúcido en dark para separación
         >
-          <article className="max-w-4xl mx-auto px-6 py-20">
-            <SobreMi />
+          <article className="max-w-7xl mx-auto px-6 py-20">
+            <Proyectos />
           </article>
         </section>
 
-        {/* PROYECTOS */}
-        <section id="proyectos" className="w-full">
-          <article className="max-w-7xl mx-auto px-6 py-20">
-            <Proyectos />
+        {/* Habilidades Section */}
+        <section
+          id="habilidades"
+          className="w-full border-t border-gray-300 dark:border-blue-500/30"
+          // mismo borde para continuidad visual
+        >
+          <article className="max-w-4xl mx-auto px-6 py-20">
+            <Habilidades />
+          </article>
+        </section>
+
+        {/* Experiencia Section */}
+        <section
+          id="experiencia"
+          className="w-full border-t border-gray-300 dark:border-blue-500/30"
+          // mismo borde para continuidad visual
+        >
+          <article className="max-w-4xl mx-auto px-6 py-20">
+            <Experiencia />
           </article>
         </section>
       </main>

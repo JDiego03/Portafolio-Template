@@ -6,19 +6,12 @@ function TechBadge({ label }) {
   );
 }
 
-function SobreMi() {
+function Habilidades() {
   return (
     <div className="text-center space-y-10 bg-white dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 rounded-xl p-8 sm:p-12 shadow-md dark:shadow-lg transition-all duration-300">
       <h3 className="text-4xl font-bold text-gray-900 dark:text-white">
-        Sobre mí
+        Habilidades
       </h3>
-
-      <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-        Soy un <strong>desarrollador full-stack</strong> con pasión por crear
-        soluciones eficientes y elegantes. Me encanta aprender nuevas
-        tecnologías, trabajar en equipo y contribuir en proyectos que realmente
-        marcan la diferencia.
-      </p>
 
       <div className="flex justify-center flex-wrap gap-4 pt-2">
         <TechBadge label="Node.js" />
@@ -28,9 +21,15 @@ function SobreMi() {
         <TechBadge label="API REST" />
         <TechBadge label="C#" />
         <TechBadge label="Tailwind CSS" />
+        <TechBadge label="HTML" />
+        <TechBadge label="Javascript" />
+        <TechBadge label="CSS" />
+        <TechBadge label="SQL" />
+        <TechBadge label="Docker" />
+        <TechBadge label="WordPress" />
       </div>
     </div>
   );
 }
 
-export default SobreMi;
+export default Habilidades;

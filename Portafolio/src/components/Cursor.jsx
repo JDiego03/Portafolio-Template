@@ -1,84 +1,64 @@
 import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
 
-export default function Cursor() {
-  const bigBall = useRef(null);
-  const smallBall = useRef(null);
+export default function CursorFollower() {
+  const trailLength = 8; // número de puntos en la estela
+  const dotsRef = useRef([]);
 
   useEffect(() => {
-    const hoverables = document.querySelectorAll(".hoverable");
+    let mouseX = 0;
+    let mouseY = 0;
+    const positions = Array(trailLength).fill({ x: 0, y: 0 });
+    const speed = 0.2;
 
-    function onMouseMove(e) {
-      gsap.to(bigBall.current, {
-        duration: 0.4,
-        x: e.pageX - 15,
-        y: e.pageY - 15,
-        ease: "power3.out",
+    const handleMouseMove = (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
+
+    const animate = () => {
+      positions[0] = {
+        x: positions[0].x + (mouseX - positions[0].x) * speed,
+        y: positions[0].y + (mouseY - positions[0].y) * speed,
+      };
+
+      for (let i = 1; i < trailLength; i++) {
+        positions[i] = {
+          x: positions[i].x + (positions[i - 1].x - positions[i].x) * speed,
+          y: positions[i].y + (positions[i - 1].y - positions[i].y) * speed,
+        };
+      }
+
+      dotsRef.current.forEach((dot, idx) => {
+        if (dot) {
+          const size = 5 - idx * 0.5; // puntos más pequeños hacia el final
+          dot.style.width = `${size}px`;
+          dot.style.height = `${size}px`;
+          dot.style.transform = `translate3d(${positions[idx].x}px, ${positions[idx].y}px, 0)`;
+          dot.style.opacity = `${1 - idx / trailLength}`; // transparencia gradual
+        }
       });
-      gsap.to(smallBall.current, {
-        duration: 0.1,
-        x: e.pageX - 5,
-        y: e.pageY - 7,
-        ease: "power3.out",
-      });
-    }
 
-    function onMouseHover() {
-      gsap.to(bigBall.current, {
-        duration: 0.3,
-        scale: 4,
-        boxShadow: "0 0 15px 8px rgba(255,255,255,0.9)",
-        ease: "power3.out",
-      });
-    }
+      requestAnimationFrame(animate);
+    };
 
-    function onMouseHoverOut() {
-      gsap.to(bigBall.current, {
-        duration: 0.3,
-        scale: 1,
-        boxShadow: "0 0 8px 4px rgba(255,255,255,0.8)",
-        ease: "power3.out",
-      });
-    }
-
-    if (bigBall.current) {
-      bigBall.current.style.backgroundColor = "#fff";
-      bigBall.current.style.mixBlendMode = "difference";
-      bigBall.current.style.boxShadow = "0 0 8px 4px rgba(255,255,255,0.8)";
-    }
-    if (smallBall.current) {
-      smallBall.current.style.backgroundColor = "#000";
-    }
-
-    document.body.style.cursor = "none";
-    document.addEventListener("mousemove", onMouseMove);
-
-    hoverables.forEach((el) => {
-      el.addEventListener("mouseenter", onMouseHover);
-      el.addEventListener("mouseleave", onMouseHoverOut);
-    });
+    document.addEventListener("mousemove", handleMouseMove);
+    animate();
 
     return () => {
-      document.body.style.cursor = "auto";
-      document.removeEventListener("mousemove", onMouseMove);
-      hoverables.forEach((el) => {
-        el.removeEventListener("mouseenter", onMouseHover);
-        el.removeEventListener("mouseleave", onMouseHoverOut);
-      });
+      document.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [trailLength]);
 
   return (
     <>
-      <div
-        ref={bigBall}
-        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50"
-        style={{ transformOrigin: "center" }}
-      />
-      <div
-        ref={smallBall}
-        className="fixed top-0 left-0 w-3 h-3 rounded-full pointer-events-none z-50 bg-black"
-      />
+      {[...Array(trailLength)].map((_, i) => (
+        <div
+          key={i}
+          ref={(el) => (dotsRef.current[i] = el)}
+          className="fixed top-0 left-0 bg-gray-500 rounded-full pointer-events-none z-50"
+          style={{ width: 5, height: 5, position: "fixed" }}
+        />
+      ))}
     </>
   );
 }
