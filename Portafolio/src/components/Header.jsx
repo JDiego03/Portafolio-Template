@@ -22,7 +22,6 @@ function Header({ toggleTheme, darkMode }) {
     <header className="fixed top-0 w-full z-50 border-b-4 border-gray-200 dark:border-blue-600 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md transition-colors">
       <div className="max-w-6xl mx-auto flex justify-between items-center px-4 py-4">
         <div className="flex items-center justify-between w-full md:w-auto">
-          <h1>Hola</h1>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden text-3xl text-gray-900 dark:text-white focus:outline-none"
