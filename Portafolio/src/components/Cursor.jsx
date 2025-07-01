@@ -55,7 +55,7 @@ export default function CursorFollower() {
         <div
           key={i}
           ref={(el) => (dotsRef.current[i] = el)}
-          className="fixed top-0 left-0 bg-gray-500 rounded-full pointer-events-none z-50"
+          className="fixed top-0 left-0 bg-blue-500 rounded-full pointer-events-none z-50"
           style={{ width: 5, height: 5, position: "fixed" }}
         />
       ))}

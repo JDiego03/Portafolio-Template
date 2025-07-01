@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import Inicio from "../components/Inicio";
 import Proyectos from "../components/Proyectos";
 import Header from "../components/Header";
-import Experiencia from "../components/Experiencia";
 import RainEffect from "../components/RainEffect";
-import Habilidades from "../components/Habilidades";
+import AcercaDeMi from "../components/AcercaDeMi";
+import img from "../assets/imgInicio.webp";
 
 function Profile() {
   const [darkMode, setDarkMode] = useState(false);
@@ -38,8 +38,20 @@ function Profile() {
           className="w-full border-b-4 border-gray-300 dark:border-blue-600 relative overflow-hidden"
         >
           <RainEffect />
-          <article className="max-w-4xl mx-auto px-6 py-20 sm:py-28 min-h-[80vh] flex items-center justify-center relative z-10">
-            <Inicio />
+          <article className="max-w-7xl mx-auto px-6 py-20 sm:py-28 min-h-[80vh] flex flex-col-reverse md:flex-row items-center justify-center gap-12 relative z-10">
+            {/* Texto */}
+            <div className="flex-1 max-w-xl">
+              <Inicio />
+            </div>
+
+            {/* Imagen */}
+            <div className="flex-1 flex justify-center">
+              <img
+                src={img}
+                alt="Ilustración de desarrollador programando"
+                className="w-full max-w-xs sm:max-w-sm md:max-w-md rounded-2xl shadow-xl transition-transform duration-500 dark:shadow-blue-500/20 opacity-0 animate-fadeInUp hover:scale-105 cursor-pointer"
+              />
+            </div>
           </article>
         </section>
 
@@ -47,32 +59,19 @@ function Profile() {
         <section
           id="proyectos"
           className="w-full border-t border-gray-300 dark:border-blue-500/30"
-          // borde top fino y translúcido en dark para separación
         >
           <article className="max-w-7xl mx-auto px-6 py-20">
             <Proyectos />
           </article>
         </section>
 
-        {/* Habilidades Section */}
+        {/* Acerca de mi */}
         <section
-          id="habilidades"
+          id="acercaDeMi"
           className="w-full border-t border-gray-300 dark:border-blue-500/30"
-          // mismo borde para continuidad visual
         >
           <article className="max-w-4xl mx-auto px-6 py-20">
-            <Habilidades />
-          </article>
-        </section>
-
-        {/* Experiencia Section */}
-        <section
-          id="experiencia"
-          className="w-full border-t border-gray-300 dark:border-blue-500/30"
-          // mismo borde para continuidad visual
-        >
-          <article className="max-w-4xl mx-auto px-6 py-20">
-            <Experiencia />
+            <AcercaDeMi />
           </article>
         </section>
       </main>

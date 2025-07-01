@@ -69,16 +69,13 @@ function Header({ toggleTheme, darkMode }) {
           <ul className="flex flex-col md:flex-row gap-4 md:gap-6 text-base font-medium text-gray-900 dark:text-white px-4 py-4 md:p-0">
             {[
               { id: "inicio", label: "Inicio" },
-              { id: "sobre-mi", label: "Sobre mí" },
               { id: "proyectos", label: "Proyectos" },
-              { id: "experiencia", label: "Experiencia" },
-              { id: "educacion", label: "Educación" },
-              { id: "habilidades", label: "Habilidades" },
+              { id: "acercaDeMi", label: "Sobre mi" },
             ].map(({ id, label }) => (
               <li key={id}>
                 <button
                   onClick={() => handleNavClick(id)}
-                  className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded transition"
+                  className="hover:text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-400 rounded transition"
                 >
                   {label}
                 </button>
