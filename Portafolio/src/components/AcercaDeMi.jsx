@@ -1,6 +1,6 @@
 function TechBadge({ label }) {
   return (
-    <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full border border-blue-300 text-blue-500 dark:text-blue-400 dark:border-blue-600 transition-transform duration-200 hover:scale-110 hover:bg-blue-500 hover:text-white cursor-default select-none">
+    <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full border border-blue-300 text-blue-500 dark:text-blue-400 dark:hover:text-white dark:border-blue-600 transition-transform duration-200 hover:scale-110 hover:bg-blue-500 hover:text-white cursor-default select-none">
       {label}
     </span>
   );
@@ -46,7 +46,7 @@ function AcercaDeMi() {
           <h4 className="text-2xl font-semibold text-center text-gray-800 dark:text-gray-200 mb-8">
             Habilidades
           </h4>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 ">
             {[
               "Node.js",
               "React",
